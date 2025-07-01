@@ -29,6 +29,7 @@ function BrandsList() {
         <Grid.Column field="image" title="Image" />
       </Grid>
       <Button onClick={loadData}>Charger les données</Button>
+      
     </>
   )
 }
