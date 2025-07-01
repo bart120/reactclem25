@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
 import {Menu, Button} from '/src/core/kendo';
 
 const menuItems = [
-  { text: 'Home', url: '/' },
-  { text: 'Marque', url: '/brands/list' },
+  { text: 'Home', render:() => <Link to="/">Home</Link> },
+  { text: 'Marque', render:() => <Link to="/brands/list">Marque</Link> },
   { text: 'Voiture',
-    'items': [{ text: 'Ajouter', url: '/cars/add' },{ text: 'Lister', url: '/cars/list' }] }
+    'items': [{ text: 'Ajouter', render:() => <Link to="/cars/add">Ajouter</Link> },
+            { text: 'Lister', render:() => <Link to="/cars/list">Lister</Link> }] }
 ];
 
 
@@ -14,7 +16,7 @@ function Header() {
         <Menu 
         style={{ width: '100%' }}
         items={menuItems} />
-
+        
     </div>
   );
 }
