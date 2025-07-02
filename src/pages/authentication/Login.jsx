@@ -23,14 +23,24 @@ const formStyle = {
 };
 
 function Login() {
+  const [login, setLogin] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(login, password);
+  }
+
   return (
     <div style={containerStyle}>
-      <form noValidate style={formStyle}>
+      <form noValidate style={formStyle} onSubmit={handleSubmit}>
         <h1>Connexion</h1>
-        <InputMail  disabled={false} validating={true} />
-        
-        <Input label="Mot de passe" type="password" />
-        
+        <InputMail  disabled={false} validating={true} value={login}
+          onChange={(e) => setLogin(e.target.value)} />
+
+        <Input label="Mot de passe" type="password" value={password}
+          onChange={(e) => setPassword(e.target.value)} />
+
         <Button type="submit" themeColor={'primary'}>Se connecter</Button>
       </form>
 
