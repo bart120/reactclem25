@@ -16,3 +16,8 @@ export async function getCars(){
             return new Date(a.dateOfCirculation) - new Date(b.dateOfCirculation);
         });
 }
+
+export async function postCar(car) {
+    const response = await api.post('/cars', car);
+    return response.data;
+}
