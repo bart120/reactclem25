@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import {Card, CardHeader, CardTitle, CardBody, CardActions, Button} from '/src/core/kendo'
+import {Card, CardHeader, CardTitle, CardBody, CardActions, Button, Loader} from '/src/core/kendo'
 import { getCars } from '../../core/services/carService'
+import { getBrandById } from '../../core/services/brandService'
 import { formatDate } from '../../core/utils'
 
 function CarsList() {
@@ -20,6 +21,14 @@ function CarsList() {
     const fetchData = async () =>{
       const data = await getCars();
       setCars(data);
+      for(const car of data) {
+        const brand = await getBrandById(car.brandID);
+        setCars((prevCars) => 
+          prevCars.map((c) =>
+            c.id === car.id ? { ...c, brand: brand.name } : c
+          )
+        );
+      }
     }
 
     fetchData();
@@ -35,7 +44,10 @@ function CarsList() {
               <CardTitle>{car.model}</CardTitle>
             </CardHeader>
             <CardBody>
-              <p>Marque : {car.brandID}</p>
+              <div>Marque : {car.brand ?? (
+                <Loader type="pulsing"  themeColor="primary" style={{ display:'inline-block' }} />
+              )
+                }</div>
               <p>Année : {formatDate(car.dateOfCirculation)}</p>
               <p>Prix : {car.price} €</p>
             </CardBody>
