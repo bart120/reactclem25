@@ -1,0 +1,12 @@
+{
+  "loading": "Chargement...",
+  "car": {
+    "model": "Modèle",
+    "price": "Prix",
+    "dateOfCirculation": "Date de mise en circulation"
+  },
+  "home": "Accueil",
+  "cars": "Voitures",
+  "add": "Ajouter",
+  "list": "Lister"
+}

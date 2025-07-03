@@ -1,0 +1,12 @@
+{
+  "loading": "Loading...",
+  "car": {
+    "model": "Model",
+    "price": "Price",
+    "dateOfCirculation": "Date of Circulation"
+  },
+  "home": "Home",
+  "cars": "Cars",
+  "add": "Add",
+  "list": "List"
+}
