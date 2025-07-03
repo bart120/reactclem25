@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardBody, CardActions } from '@progress/ke
 import {Loader} from '@progress/kendo-react-indicators';
 import { DatePicker } from '@progress/kendo-react-dateinputs';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
+import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 
 export { Menu, Button, Grid, Input, Card, CardHeader, CardTitle, CardBody, 
-    CardActions, Loader, DatePicker, DropDownList };
+    CardActions, Loader, DatePicker, DropDownList, Dialog, DialogActionsBar };

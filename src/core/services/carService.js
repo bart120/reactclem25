@@ -17,7 +17,23 @@ export async function getCars(){
         });
 }
 
+export async function getCarById(id){
+    const response = await api.get(`/cars/${id}`);
+    return response.data;
+}
+
+
+
 export async function postCar(car) {
     const response = await api.post('/cars', car);
     return response.data;
+}
+
+export async function deleteCar(id) {
+    try{
+        const response = await api.delete(`/cars/${id}`);
+        return true;
+    }catch (error) {
+        return false;
+    }
 }

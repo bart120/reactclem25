@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
-import {Card, CardHeader, CardTitle, CardBody, CardActions, Button, Loader} from '/src/core/kendo'
-import { getCars } from '../../core/services/carService'
+import {Card, CardHeader, CardTitle, CardBody, CardActions, Button, Loader, Dialog, DialogActionsBar} from '/src/core/kendo'
+import { getCars, deleteCar } from '../../core/services/carService'
 import { getBrandById } from '../../core/services/brandService'
 import { formatDate } from '../../core/utils'
+import { Link } from 'react-router-dom'
 
 function CarsList() {
 
   const [cars, setCars] = React.useState([]);
+  const [deletedCar, setDeletedCar] = React.useState(null);
 
   //avec then
   /*useEffect(() => {
@@ -15,6 +17,15 @@ function CarsList() {
       //console.log("useEffect", data);
     });
   }, []);*/
+
+  const handleDelete = async () => {
+    const test = await deleteCar(deletedCar.id);
+    if(test){
+      setCars((prevCars) => prevCars.filter((car) => car.id !== deletedCar.id));
+      setDeletedCar(null);
+    }
+
+  }
 
   //avec async/await
   useEffect(() => {
@@ -52,11 +63,25 @@ function CarsList() {
               <p>Prix : {car.price} €</p>
             </CardBody>
             <CardActions>
-              <Button themeColor={'primary'} size="small">Détails</Button>
+              <Link to={`/cars/detail/${car.id}`}>
+                <Button themeColor={'secondary'} size="small">Détails</Button>
+              </Link>
+              <Button themeColor={'primary'} size="small"
+                onClick={() => setDeletedCar(car)}>Supprimer</Button>
             </CardActions>
           </Card>
         ))}
       </div>
+
+      {deletedCar &&(
+        <Dialog title="Confirmation de suppression" onClose={() => setDeletedCar(null)}>
+          <p>Êtes-vous sûr de vouloir supprimer la voiture {deletedCar.model} ?</p>
+          <DialogActionsBar>
+            <Button themeColor={'secondary'} onClick={() => setDeletedCar(null)}>Annuler</Button>
+            <Button themeColor={'primary'} onClick={handleDelete}>Confirmer</Button>
+          </DialogActionsBar>
+        </Dialog>
+      )}
     </div>
   )
 }
