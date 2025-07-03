@@ -8,5 +8,7 @@
   "home": "Accueil",
   "cars": "Voitures",
   "add": "Ajouter",
-  "list": "Lister"
+  "list": "Lister",
+  "welcome": "Bienvenue {{name}}",
+  "logout": "Se déconnecter"
 }

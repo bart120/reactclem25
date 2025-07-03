@@ -15,6 +15,7 @@ function Language() {
 
     const changeLang = (lang) => {
         i18n.changeLanguage(lang);
+        
     }
   return (
     <div style={{ display: 'flex', gap: '10px', padding: '10px' }}>

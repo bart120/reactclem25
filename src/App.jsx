@@ -7,6 +7,7 @@ import { Header, Footer } from './core/components/layout'
 import { BrowserRouter } from 'react-router-dom'
 import MainRoutes from './core/routes/MainRoutes'
 import { useTranslation } from 'react-i18next'
+import { AuthProvider } from './core/redux/AuthContext'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,11 +19,13 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <MainRoutes />
-        <Footer />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Header />
+          <MainRoutes />
+          <Footer />
+        </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }

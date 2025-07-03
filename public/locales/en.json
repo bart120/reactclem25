@@ -8,5 +8,7 @@
   "home": "Home",
   "cars": "Cars",
   "add": "Add",
-  "list": "List"
+  "list": "List",
+  "welcome": "Welcome {{name}}",
+  "logout": "Logout"
 }

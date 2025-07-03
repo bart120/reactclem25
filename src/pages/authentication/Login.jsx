@@ -2,6 +2,7 @@
 import React from 'react'
 import InputMail from '../../core/components/forms/InputMail'
 import { Input, Button } from '/src/core/kendo'
+import { useAuth } from '../../core/redux/AuthContext';
 
 const containerStyle = {
       display: 'flex',
@@ -23,7 +24,9 @@ const formStyle = {
 };
 
 function Login() {
-  const [login, setLogin] = React.useState('');
+  const {isConnected, login} = useAuth();
+
+  const [loginMail, setLoginMail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [emailValid, setEmailValid] = React.useState(false);
 
@@ -31,15 +34,18 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(login, password);
+    console.log(loginMail, password);
+    // Simuler une connexion réussie
+    login({ login: loginMail, name: 'Bob' });
   }
 
   return (
     <div style={containerStyle}>
+      {!isConnected ? (
       <form noValidate style={formStyle} onSubmit={handleSubmit}>
         <h1>Connexion</h1>
-        <InputMail  disabled={false} validating={true} value={login}
-          onChange={(e) => setLogin(e.target.value)}
+        <InputMail  disabled={false} validating={true} value={loginMail}
+          onChange={(e) => setLoginMail(e.target.value)}
           onValidChange={setEmailValid}
         />
 
@@ -48,7 +54,7 @@ function Login() {
 
         <Button type="submit" themeColor={'primary'} disabled={!isFormValid}>Se connecter</Button>
       </form>
-
+      ):(<p>Vous êtes déjà connecté</p>)}
     </div>
   )
 }
